@@ -11,7 +11,7 @@ const addUser = ({id, name, room}) => {
 	}
 	const newUser = {id, name, room};
 	users.push(newUser);
-	return newUser;
+	return { user: newUser };
 };
 
-module.export({addUser});
+module.exports = {addUser};
