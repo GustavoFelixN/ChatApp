@@ -9,6 +9,24 @@ const io = socketIO(server);
 
 const PORT = process.env.PORT || 3001;
 
+const {addUser} = require("./users");
+
+io.on("connection", (socket) => {
+	console.log("Um usuario conectou");
+	socket.on("join", ({name, room}, callback) => {
+		const { error, user } = addUser({ id: socket.id, name, room });
+
+		if (error) {
+			console.error("Usuario ja existente");
+			return callback(error);
+		}
+
+		socket.join(user.room);
+		console.log(`Usuario ${name} adicionado com sucesso a sala ${room}`)
+		callback();
+	});
+});
+
 app.use(cors());
 
 server.listen(PORT, () => {
