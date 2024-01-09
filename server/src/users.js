@@ -14,12 +14,14 @@ const addUser = ({id, name, room}) => {
 	return { user: newUser };
 };
 
+const getUser = (id) => users.find((user) => user.id === id);
+
 const removeUser = (id) => {
-	const removedUser = users.find((user) => user.id === id);
+	const removedUser = getUser(id);
 	if (removedUser) {
 		users = users.filter((user) => user.id !== id);
 		return removedUser;
 	}
 }
 
-module.exports = { addUser, removeUser };
+module.exports = { addUser, removeUser, getUser };
