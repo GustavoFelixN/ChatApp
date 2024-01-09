@@ -1,4 +1,4 @@
-const users = [];
+let users = [];
 
 const checkUserIsRegistered = (name, room) => {
 	return !!users.find((user) => user.name === name && user.room === room);
@@ -14,4 +14,12 @@ const addUser = ({id, name, room}) => {
 	return { user: newUser };
 };
 
-module.exports = {addUser};
+const removeUser = (id) => {
+	const removedUser = users.find((user) => user.id === id);
+	if (removedUser) {
+		users = users.filter((user) => user.id !== id);
+		return removedUser;
+	}
+}
+
+module.exports = { addUser, removeUser };

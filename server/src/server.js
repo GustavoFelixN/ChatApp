@@ -9,7 +9,7 @@ const io = socketIO(server);
 
 const PORT = process.env.PORT || 3001;
 
-const {addUser} = require("./users");
+const {addUser, removeUser} = require("./users");
 
 io.on("connection", (socket) => {
 	console.log("Um usuario conectou");
@@ -25,6 +25,13 @@ io.on("connection", (socket) => {
 		console.log(`Usuario ${name} adicionado com sucesso a sala ${room}`)
 		callback();
 	});
+
+	socket.on("disconnect", () => {
+		const user = removeUser(socket.id);
+		if(user) {
+			console.log(`Removendo usuario ${user.name}`);
+		}
+	})
 });
 
 app.use(cors());
