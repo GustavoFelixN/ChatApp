@@ -1,8 +1,15 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Chat from './pages/Chat/Chat.jsx';
+
 function App() {
 	return (
-		<div>
-			<h1>Site do felix</h1>
-		</div>
+		<Router>
+			<Routes>
+				<Route path="/" element={<Chat />} />
+			</Routes>
+		</Router>
 	);
 }
 
