@@ -2,10 +2,14 @@ import React from 'react';
 import { Page, Title, InputContainer, ButtonWrapper } from './styles.js';
 import { Input, Button } from '../../components';
 import { Form } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+	const navigate = useNavigate();
 
-	const handleSubmit = (params) => console.log(params);
+	const handleSubmit = (formData) => {
+		navigate('/chat', { state: formData });
+	};
 
 	return (
 		<Page>
