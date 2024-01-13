@@ -8,7 +8,10 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = (formData) => {
-		navigate('/chat', { state: formData });
+		const { name, room } = formData;
+		if( !!name && !!room ) {
+			navigate('/chat', { state: { name, room } });
+		}
 	};
 
 	return (
