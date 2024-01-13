@@ -19,8 +19,19 @@ export const InputContainer = styled.div`
 	border: 2px solid #380356;
 	border-radius: 10px;
 	margin: 25px;
-	padding: 55px 55px 45px 55px;
+	padding: 55px 55px 20px 55px;
 	display: flex;
 	flex-direction: column;
 	background-color: rgba(107, 56, 135, 0.2);
+`;
+
+export const InputWrapper = styled.div`
+	margin-bottom: 10px;
+`;
+
+export const ButtonWrapper = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	margin-top: 10px;
 `;

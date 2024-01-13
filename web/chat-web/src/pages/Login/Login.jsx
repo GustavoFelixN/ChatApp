@@ -1,15 +1,28 @@
 import React from 'react';
-import { Page, Title, InputContainer } from './styles.js';
-import { Input } from '../../components';
+import { Page, Title, InputContainer, ButtonWrapper } from './styles.js';
+import { Input, Button } from '../../components';
+import { Form } from 'antd';
 
 const Login = () => {
+
+	const handleSubmit = (params) => console.log(params);
+
 	return (
 		<Page>
 			<Title>CHAT DO FELIX</Title>
-			<InputContainer>
-				<Input size="large" placeholder="Nome" style={ {backgroundColor: "#380356"} }/>
-				<Input size="large" placeholder="Sala"/>
-			</InputContainer>
+			<Form onFinish={handleSubmit}>
+				<InputContainer>
+					<Form.Item name="name">
+						<Input size="large" placeholder="Nome"/>
+					</Form.Item>
+					<Form.Item name="room">
+						<Input size="large" placeholder="Sala"/>
+					</Form.Item>
+					<ButtonWrapper>
+						<Button size="large" htmlType="submit" >Entrar</Button>
+					</ButtonWrapper>
+				</InputContainer>
+			</Form>
 		</Page>
 	);
 };
