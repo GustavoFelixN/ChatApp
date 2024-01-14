@@ -5,9 +5,16 @@ const cors = require("cors");
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server, {
+	cors: {
+		origin: "*",
+		methods: ["GET", "POST"]
+	}
+});
 
 const PORT = process.env.PORT || 3001;
+
+const router = require("./router");
 
 const {addUser, removeUser} = require("./users");
 
@@ -34,7 +41,8 @@ io.on("connection", (socket) => {
 	})
 });
 
-app.use(cors());
+app.use(router);
+app.use(cors({ origin: '*' }));
 
 server.listen(PORT, () => {
 	console.log(`Servidor rodando na porta ${PORT}`);
