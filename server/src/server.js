@@ -30,7 +30,6 @@ io.on("connection", (socket) => {
 
 		socket.join(user.room);
 		console.log(`Usuario ${name} adicionado com sucesso a sala ${room}`)
-		callback();
 	});
 
 	socket.on("disconnect", () => {
