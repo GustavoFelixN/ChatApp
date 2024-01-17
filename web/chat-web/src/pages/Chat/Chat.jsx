@@ -16,14 +16,13 @@ const Chat = () => {
 
 		socket.current = io("localhost:3001");
 
-		socket.current.on('connect', () => {
-			console.log('conectado!');
+		socket.current.emit('join', { name, room }, (error) => {
+			alert(error);
 		});
 
-		socket.current.on("connect_error", () => {
-			console.log('deu ruim');
+		return () => {
 			socket.current.disconnect();
-		});
+		}
 
 	}, [location])
 
