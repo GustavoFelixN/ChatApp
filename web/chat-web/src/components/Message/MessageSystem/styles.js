@@ -7,6 +7,7 @@ export const Container = styled.div`
 	text-align: center;
 	font-size: 15px;
 	padding: 7px;
+	margin-bottom: 10px;
 `;
 
 export const Message = styled.b`
