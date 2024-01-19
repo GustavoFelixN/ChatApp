@@ -7,4 +7,5 @@ export const MessageWrapper = styled.div`
 	padding: 10px 10px 0px 10px;
 	margin-right: 10px;
 	margin-bottom: 5px;
+	max-width: 50%;
 `;

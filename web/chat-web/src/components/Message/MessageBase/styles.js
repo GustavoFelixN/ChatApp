@@ -12,5 +12,4 @@ export const Content = styled.p`
 export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 300px;
 `;
