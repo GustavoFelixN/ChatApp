@@ -33,6 +33,7 @@ const Chat = () => {
 			<Title>{room}</Title>
 			<Message user="felix" type="user" text="ola, teste de estilo de mensagem."/>
 			<Message user="visitante" type="sender" text="essa mensagem foi mandada por outro usuario"/>
+			<Message type="system" text="carlos entrou"/>
 			<Message user="carlos" type="sender" text="essa tbm! (pelo carlos)"/>
 		</Page>
 	);

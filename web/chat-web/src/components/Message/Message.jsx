@@ -1,6 +1,7 @@
 import React from 'react';
 import { default as MessageSender } from './MessageSender/MessageSender.jsx';
 import { default as MessageUser } from './MessageUser/MessageUser.jsx';
+import { default as MessageSystem } from './MessageSystem/MessageSystem.jsx';
 
 const Message = ({user, text, type}) => {
 
@@ -10,7 +11,7 @@ const Message = ({user, text, type}) => {
 		}
 
 		if(type === 'system') {
-			return <MessageUser user={user} text={text} />
+			return <MessageSystem text={text} />
 		}
 
 		return <MessageSender user={user} text={text} />
