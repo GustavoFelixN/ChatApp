@@ -15,6 +15,7 @@ const MessageInput = ({ submitCallback }) => {
 				placeholder="Envie uma mensagem.."
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
+				onPressEnter={handleSubmit}
 			/>
 			<Button size="large" htmlType="submit" onClick={handleSubmit}>Enviar</Button>
 		</Space.Compact>
