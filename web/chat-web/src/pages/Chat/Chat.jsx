@@ -1,15 +1,22 @@
-import React, { useLayoutEffect, useState, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { Page, Title } from './styles.js';
-import { Message } from '../../components';
+import { MessageDisplay, MessageInput } from '../../components';
 
 const Chat = () => {
 	const location = useLocation();
-	const [, setName] = useState('');
+	const [name, setName] = useState('');
 	const [room, setRoom] = useState('');
+	const [messages, setMessages] = useState([]);
 
 	const socket = useRef(null);
+
+	const sendMessage = (message, cleanUpFunction) => {
+		if(message) {
+			socket.current.emit('sendMessage', message, cleanUpFunction);
+		}
+	}
 
 	useLayoutEffect(() => {
 		const { name, room } = location.state;
@@ -28,13 +35,24 @@ const Chat = () => {
 
 	}, [location])
 
+	useEffect(() => {
+		socket.current.on('message', (message) => {
+			if(message.user === 'system'){
+				setMessages([...messages, { user: message.user, text: message.text, type: "system"}])
+			} else if (message.user === name) {
+				setMessages([...messages, { user: message.user, text: message.text, type: "user"}])
+			} else {
+				setMessages([...messages, { user: message.user, text: message.text, type: "sender"}])
+			}
+		})
+	}, [messages, name]);
+
+
 	return (
 		<Page>
 			<Title>{room}</Title>
-			<Message user="felix" type="user" text="ola, teste de estilo de mensagem."/>
-			<Message user="visitante" type="sender" text="essa mensagem foi mandada por outro usuario"/>
-			<Message type="system" text="carlos entrou"/>
-			<Message user="carlos" type="sender" text="essa tbm! (pelo carlos)"/>
+			<MessageDisplay messages={messages}/>
+			<MessageInput submitCallback={sendMessage}/>
 		</Page>
 	);
 }
