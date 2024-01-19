@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useLayoutEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import  { io } from 'socket.io-client';
+import { io } from 'socket.io-client';
+import { Page, Title } from './styles.js';
+import { Message } from '../../components';
 
 const Chat = () => {
 	const location = useLocation();
 	const [, setName] = useState('');
-	const [, setRoom] = useState('');
+	const [room, setRoom] = useState('');
 
 	const socket = useRef(null);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const { name, room } = location.state;
 		setName(name);
 		setRoom(room);
@@ -27,9 +29,12 @@ const Chat = () => {
 	}, [location])
 
 	return (
-		<div>
-			<h1>Chat</h1>
-		</div>
+		<Page>
+			<Title>{room}</Title>
+			<Message user="felix" type="user" text="ola, teste de estilo de mensagem."/>
+			<Message user="visitante" type="sender" text="essa mensagem foi mandada por outro usuario"/>
+			<Message user="carlos" type="sender" text="essa tbm! (pelo carlos)"/>
+		</Page>
 	);
 }
 
