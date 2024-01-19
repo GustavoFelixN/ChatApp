@@ -10,4 +10,5 @@ export const Page = styled.div`
 
 export const Title = styled(BaseTitle)`
 	align-self: center;
+	font-size: 45px;
 `;
